@@ -1,0 +1,16 @@
+/* Mobile-first: evita zoom/rebote y ocupa toda la pantalla en dispositivos móviles */
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,30 @@
+@use 'theme/theme.scss';
+@use 'theme/base.scss';
+
+:root {
+  /** Font-Weight**/
+  --font-thin: 100;
+  --font-extralight: 200;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
+
+  /** Font Sizes **/
+  --font-xs: var(--text-xs); /* 0.75rem (12px) */
+  --font-sm: var(--text-sm); /* 0.875rem (14px) */
+  --font-base: var(--text-base); /* 1rem (16px) */
+  --font-lg: var(--text-lg); /* 1.125rem (18px) */
+  --font-xl: var(--text-xl); /* 1.25rem (20px) */
+  --font-2xl: var(--text-2xl); /* 1.5rem (24px) */
+  --font-3xl: var(--text-3xl); /* 1.875rem (30px) */
+  --font-4xl: var(--text-4xl); /* 2.25rem (36px) */
+  --font-5xl: var(--text-5xl); /* 3rem (48px) */
+  --font-6xl: var(--text-6xl); /* 3.75rem (60px) */
+  --font-7xl: var(--text-7xl); /* 4.5rem (72px) */
+  --font-8xl: var(--text-8xl); /* 6rem (96px) */
+  --font-9xl: var(--text-9xl); /* 8rem (128px) */
+}
