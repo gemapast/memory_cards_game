@@ -1,9 +1,14 @@
 {
-  "name": "memory-cards-app",
-  "short_name": "memory-cards-app",
+  "name": "Memory Cards",
+  "short_name": "Memory Cards",
+  "description": "Memory Cards: memorize the numbers and find their position before time runs out.",
+  "lang": "es",
   "display": "standalone",
+  "orientation": "portrait",
   "scope": "./",
   "start_url": "./",
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
