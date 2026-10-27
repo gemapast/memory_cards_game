@@ -1,0 +1,7 @@
+{
+  "GAME_TITLE": "Memory Cards",
+  "PLAYER_NAME": "Player name",
+  "PLAYER_NAME_PLACEHOLDER": "Enter your name",
+  "PLAYER_NAME_ERROR": "Please enter a valid name (between 2 and 20 characters).",
+  "START_GAME": "Start game"
+}

@@ -1,0 +1,7 @@
+{
+  "GAME_TITLE": "Memory Cards",
+  "PLAYER_NAME": "Nombre del jugador",
+  "PLAYER_NAME_PLACEHOLDER": "Escribe tu nombre",
+  "PLAYER_NAME_ERROR": "Introduce un nombre válido (entre 2 y 20 caracteres).",
+  "START_GAME": "Comenzar a jugar"
+}
