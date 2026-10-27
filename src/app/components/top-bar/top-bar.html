@@ -1,0 +1,21 @@
+<div class="top-bar">
+  <span class="top-bar__title">{{ 'GAME_TITLE' | translate }}</span>
+
+  <button
+    type="button"
+    class="top-bar__player"
+    aria-haspopup="true"
+    [attr.aria-expanded]="menuOpen()"
+    (click)="toggleMenu()"
+  >
+    {{ playerName }}
+  </button>
+
+  @if (menuOpen()) {
+    <div class="top-bar__menu">
+      <button type="button" class="top-bar__menu-button" (click)="onExit()">
+        {{ 'EXIT_GAME' | translate }}
+      </button>
+    </div>
+  }
+</div>

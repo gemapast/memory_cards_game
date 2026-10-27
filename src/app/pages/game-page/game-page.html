@@ -1,3 +1,54 @@
+<app-top-bar [playerName]="playerService.player()?.name ?? ''" (exit)="onExit()" />
+
 <div class="game-page">
-  <h1 class="game-page__title">Hola, {{ playerService.player()?.name }}</h1>
+  @if (gameService.isPlaying() || gameService.isGameOver()) {
+    <app-game-info
+      [difficulty]="gameService.difficulty()"
+      [timeRemaining]="gameService.timeRemaining()"
+      [score]="gameService.score()"
+    />
+  }
+
+  @if (gameService.status() === 'idle') {
+    <app-difficulty-selector
+      [selected]="gameService.difficulty()"
+      [disabled]="gameService.isPlaying()"
+      [canStart]="gameService.canStart()"
+      (selectDifficulty)="gameService.setDifficulty($event)"
+      (start)="gameService.start()"
+    />
+  }
+
+  @if (gameService.status() === 'showing') {
+    <p class="game-page__hint">{{ 'MEMORIZE_NUMBERS' | translate }}</p>
+  }
+
+  @if (gameService.status() === 'guessing' || gameService.status() === 'roundComplete') {
+    <p class="game-page__hint">
+      {{ 'FIND_NUMBER' | translate: { value: gameService.targetValue() } }}
+    </p>
+  }
+
+  @if (gameService.isGameOver()) {
+    <p class="game-page__hint game-page__hint--danger">{{ 'GAME_OVER' | translate }}</p>
+  }
+
+  @if (gameService.board().length > 0) {
+    <app-game-board
+      [board]="gameService.board()"
+      [disabled]="gameService.status() !== 'guessing'"
+      (cellClick)="gameService.selectCell($event)"
+    />
+  }
+
+  @if (gameService.isGameOver()) {
+    <div class="game-page__actions flex gap-2">
+      <button type="button" class="btn-primary flex-1" (click)="gameService.start()">
+        {{ 'PLAY_AGAIN' | translate }}
+      </button>
+      <button type="button" class="btn-secondary flex-1" (click)="gameService.reset()">
+        {{ 'CHANGE_DIFFICULTY' | translate }}
+      </button>
+    </div>
+  }
 </div>

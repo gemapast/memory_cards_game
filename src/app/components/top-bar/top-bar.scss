@@ -1,0 +1,61 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.top-bar {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-surface-elevated);
+  padding: 0.75rem 1rem;
+
+  &__title {
+    font-size: var(--font-lg);
+    font-weight: var(--font-bold);
+    color: var(--color-ink);
+  }
+
+  &__player {
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 0.375rem;
+    padding: 0.25rem 0.5rem;
+    font-size: var(--font-base);
+    line-height: 1.25rem;
+    font-weight: var(--font-medium);
+    color: var(--color-ink);
+
+    &:hover {
+      background-color: var(--color-surface-inset);
+      color: var(--color-ink);
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    margin-top: 0.5rem;
+    width: 10rem;
+    overflow: hidden;
+    border: 1px solid var(--color-outline);
+    background-color: var(--color-surface-elevated);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  &__menu-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: var(--font-sm);
+    line-height: 1.25rem;
+    font-weight: var(--font-semibold);
+    color: var(--color-danger);
+  }
+}

@@ -1,0 +1,5 @@
+<div class="game-board grid grid-cols-3">
+  @for (cell of board; track cell.position) {
+    <app-game-card [cell]="cell" [disabled]="disabled" (select)="cellClick.emit($event)" />
+  }
+</div>
