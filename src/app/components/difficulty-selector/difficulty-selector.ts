@@ -19,7 +19,7 @@ export class DifficultySelector {
   @Input() disabled = false;
   @Input() canStart = false;
   @Output() selectDifficulty = new EventEmitter<Difficulty>();
-  @Output() start = new EventEmitter<void>();
+  @Output() startGame = new EventEmitter<void>();
 
   readonly difficulties = DIFFICULTIES;
   readonly difficultyLabels = DIFFICULTY_LABELS;

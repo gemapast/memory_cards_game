@@ -15,8 +15,7 @@ describe('playerGuard', () => {
 
   function runGuard(): boolean | UrlTree {
     return TestBed.runInInjectionContext(() => playerGuard({} as never, {} as never)) as
-      | boolean
-      | UrlTree;
+      boolean | UrlTree;
   }
 
   it('should allow navigation when a player is registered', () => {
