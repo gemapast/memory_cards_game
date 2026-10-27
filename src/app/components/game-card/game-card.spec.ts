@@ -34,7 +34,7 @@ describe('GameCard', () => {
     fixture.detectChanges();
 
     const selected = vi.fn();
-    fixture.componentInstance.select.subscribe(selected);
+    fixture.componentInstance.selectCell.subscribe(selected);
 
     (fixture.nativeElement as HTMLElement).querySelector('button')!.click();
 
@@ -48,7 +48,7 @@ describe('GameCard', () => {
     fixture.detectChanges();
 
     const selected = vi.fn();
-    fixture.componentInstance.select.subscribe(selected);
+    fixture.componentInstance.selectCell.subscribe(selected);
 
     (fixture.nativeElement as HTMLElement).querySelector('button')!.click();
 

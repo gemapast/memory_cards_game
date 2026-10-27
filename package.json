@@ -7,11 +7,14 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test:coverage": "ng test --coverage"
+    "test:coverage": "ng test --coverage",
+    "lint": "ng lint",
+    "prepare": "husky"
   },
   "prettier": {
     "printWidth": 100,
     "singleQuote": true,
+    "endOfLine": "auto",
     "overrides": [
       {
         "files": "*.html",
@@ -40,12 +43,21 @@
     "@angular/build": "^21.0.4",
     "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^21.0.0",
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@vitest/coverage-v8": "^4.0.8",
+    "angular-eslint": "21.4.0",
+    "eslint": "^10.3.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "husky": "^9.1.7",
     "jsdom": "^27.1.0",
+    "lint-staged": "^16.4.0",
     "postcss": "^8.5.31",
+    "prettier": "^3.9.10",
     "tailwindcss": "^4.3.3",
     "typescript": "~5.9.2",
+    "typescript-eslint": "8.59.2",
     "vitest": "4.0.8"
   }
 }

@@ -10,13 +10,13 @@ import { Cell } from '../../core/interfaces/game.interface';
 export class GameCard {
   @Input({ required: true }) cell!: Cell;
   @Input() disabled = false;
-  @Output() select = new EventEmitter<number>();
+  @Output() selectCell = new EventEmitter<number>();
 
   onClick(): void {
     if (this.isDisabled) {
       return;
     }
-    this.select.emit(this.cell.position);
+    this.selectCell.emit(this.cell.position);
   }
 
   get isHidden(): boolean {

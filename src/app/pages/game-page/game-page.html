@@ -15,7 +15,7 @@
       [disabled]="gameService.isPlaying()"
       [canStart]="gameService.canStart()"
       (selectDifficulty)="gameService.setDifficulty($event)"
-      (start)="gameService.start()"
+      (startGame)="gameService.start()"
     />
   }
 

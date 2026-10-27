@@ -61,7 +61,7 @@ describe('DifficultySelector', () => {
     fixture.detectChanges();
 
     const started = vi.fn();
-    fixture.componentInstance.start.subscribe(started);
+    fixture.componentInstance.startGame.subscribe(started);
 
     const buttons = (fixture.nativeElement as HTMLElement).querySelectorAll('button');
     const startButton = buttons[buttons.length - 1] as HTMLButtonElement;
