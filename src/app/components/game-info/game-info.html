@@ -1,0 +1,7 @@
+<div class="game-info">
+  <span class="game-info__difficulty">{{
+    difficulty ? (difficultyLabels[difficulty] | translate) : ''
+  }}</span>
+  <span class="game-info__time">{{ timeRemaining }}s</span>
+  <span class="game-info__score">{{ score }} {{ 'POINTS_SUFFIX' | translate }}</span>
+</div>

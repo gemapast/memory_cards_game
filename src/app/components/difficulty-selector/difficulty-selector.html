@@ -1,0 +1,20 @@
+<div class="difficulty-selector" role="group" [attr.aria-label]="'DIFFICULTY_LABEL' | translate">
+  @for (level of difficulties; track level) {
+    <button
+      type="button"
+      class="difficulty-selector__button"
+      [class.difficulty-selector__button--selected]="isSelected(level)"
+      [disabled]="disabled"
+      (click)="selectDifficulty.emit(level)"
+    >
+      <span class="difficulty-selector__label">{{ difficultyLabels[level] | translate }}</span>
+      <span class="difficulty-selector__time">{{
+        'VISIBLE_SECONDS' | translate: { value: difficultyConfig[level].time }
+      }}</span>
+    </button>
+  }
+
+  <button type="button" class="btn-primary" [disabled]="!canStart" (click)="start.emit()">
+    {{ 'START_ROUND' | translate }}
+  </button>
+</div>

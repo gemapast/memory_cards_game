@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { HomePage } from './home-page';
 import { PlayerService } from '../../core/services/player.service';
 
@@ -7,7 +8,7 @@ describe('HomePage', () => {
   beforeEach(async () => {
     localStorage.clear();
     await TestBed.configureTestingModule({
-      imports: [HomePage],
+      imports: [HomePage, TranslateModule.forRoot()],
       providers: [provideRouter([])],
     }).compileComponents();
   });

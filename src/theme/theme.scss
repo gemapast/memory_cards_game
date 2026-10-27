@@ -3,6 +3,9 @@
 @utility btn-primary {
   @apply w-full rounded-xl bg-indigo-600 px-4 py-3 text-base font-semibold text-white transition-colors active:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50;
 }
+@utility btn-secondary {
+  @apply w-full rounded-xl border border-outline bg-transparent px-4 py-3 text-base font-semibold text-ink transition-colors active:bg-surface-elevated disabled:cursor-not-allowed disabled:opacity-50;
+}
 @theme static {
   --color-surface: var(--color-slate-900);
   --color-surface-elevated: var(--color-slate-800);
@@ -19,4 +22,5 @@
   --color-ink-muted: var(--color-slate-400);
 
   --color-danger: var(--color-red-400);
+  --color-success: var(--color-emerald-500);
 }

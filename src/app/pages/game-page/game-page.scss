@@ -1,9 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
 .game-page {
   display: flex;
-  min-height: 100vh;
+  flex: 1;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 1.25rem;
   background-color: var(--color-slate-900);
   padding: 1.5rem 1rem;
   color: var(--color-slate-100);
@@ -12,4 +19,24 @@
     font-size: var(--font-2xl);
     font-weight: var(--font-bold);
   }
+
+  &__hint {
+    font-size: var(--text-lg);
+    font-weight: var(--font-medium);
+    color: var(--color-slate-300);
+
+    &--danger {
+      color: var(--color-danger);
+      font-weight: var(--font-bold);
+    }
+  }
+
+  &__actions {
+    width: 100%;
+    max-width: 24rem;
+  }
+
+  // .btn-primary {
+  //   width: 100%;
+  // }
 }
