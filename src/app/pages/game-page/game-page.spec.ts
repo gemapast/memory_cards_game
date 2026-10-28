@@ -76,7 +76,10 @@ describe('GamePage', () => {
 
     const target = gameService.targetValue();
     const cell = gameService.board().find((c) => c.value === target)!;
-    gameService.selectCell(cell.position);
+    const cards = (fixture.nativeElement as HTMLElement).querySelectorAll<HTMLButtonElement>(
+      'button.game-card',
+    );
+    cards[cell.position].click();
     fixture.detectChanges();
 
     expect(gameService.score()).toBe(30);
@@ -119,7 +122,11 @@ describe('GamePage', () => {
     gameService.selectCell(wrongCell.position);
     fixture.detectChanges();
 
-    gameService.reset();
+    const actionButtons = (
+      fixture.nativeElement as HTMLElement
+    ).querySelectorAll<HTMLButtonElement>('.game-page__actions button');
+    expect(actionButtons.length).toBe(2);
+    actionButtons[1].click();
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
