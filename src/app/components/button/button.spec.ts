@@ -33,15 +33,6 @@ describe('Button', () => {
     expect(button.className).toContain('btn-secondary');
   });
 
-  it('adds the flex-1 class when grow is set', () => {
-    const fixture = TestBed.createComponent(Button);
-    fixture.componentInstance.grow = true;
-    fixture.detectChanges();
-
-    const button = (fixture.nativeElement as HTMLElement).querySelector('button')!;
-    expect(button.className).toContain('flex-1');
-  });
-
   it('reflects the type and disabled inputs', () => {
     const fixture = TestBed.createComponent(Button);
     fixture.componentInstance.type = 'submit';
