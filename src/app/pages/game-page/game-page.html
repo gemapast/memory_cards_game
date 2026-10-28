@@ -1,3 +1,5 @@
+<app-top-bar [playerName]="playerService.player()?.name ?? ''" (exit)="onExit()" />
+
 <div class="game-page">
   @if (gameService.isPlaying() || gameService.isGameOver()) {
     <app-game-info

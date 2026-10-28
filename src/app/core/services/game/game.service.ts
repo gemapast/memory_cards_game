@@ -70,6 +70,7 @@ export class GameService {
     if (!isCorrect) {
       this.cancelTimers();
       this.statusSignal.set('gameOver');
+      this.vibrateOnFail();
       return;
     }
 
@@ -123,5 +124,9 @@ export class GameService {
     }
     this.boardSignal.set(this.boardSignal().map((cell) => ({ ...cell, state: 'hidden' })));
     this.statusSignal.set('guessing');
+  }
+
+  private vibrateOnFail(): void {
+    navigator.vibrate?.(200);
   }
 }

@@ -1,0 +1,13 @@
+<div class="language-switcher flex gap-1" role="group" aria-label="Language">
+  @for (lang of languages; track lang) {
+    <button
+      type="button"
+      class="language-switcher__button px-2 py-1"
+      [class.language-switcher__button--active]="isActive(lang)"
+      [attr.aria-pressed]="isActive(lang)"
+      (click)="languageService.setLang(lang)"
+    >
+      {{ lang }}
+    </button>
+  }
+</div>
