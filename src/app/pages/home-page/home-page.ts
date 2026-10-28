@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { PlayerService } from '../../core/services/player/player.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../components/button/button';
+import { LanguageSwitcher } from '../../components/language-switcher/language-switcher';
 
 @Component({
   selector: 'app-home-page',
-  imports: [ReactiveFormsModule, TranslatePipe, Button],
+  imports: [ReactiveFormsModule, TranslatePipe, Button, LanguageSwitcher],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

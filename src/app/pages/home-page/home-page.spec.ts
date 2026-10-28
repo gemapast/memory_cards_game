@@ -3,6 +3,7 @@ import { provideRouter, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { HomePage } from './home-page';
 import { PlayerService } from '../../core/services/player/player.service';
+import { LanguageService } from '../../core/services/language/language.service';
 
 describe('HomePage', () => {
   beforeEach(async () => {
@@ -16,6 +17,21 @@ describe('HomePage', () => {
   it('should create', () => {
     const fixture = TestBed.createComponent(HomePage);
     expect(fixture.componentInstance).toBeTruthy();
+  });
+
+  it('shows the language switcher and changes the language even without a registered player', () => {
+    const fixture = TestBed.createComponent(HomePage);
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const buttons = compiled.querySelectorAll<HTMLButtonElement>('app-language-switcher button');
+    expect(buttons.length).toBe(2);
+
+    const enButton = Array.from(buttons).find((button) => button.textContent?.trim() === 'en')!;
+    enButton.click();
+    fixture.detectChanges();
+
+    expect(TestBed.inject(LanguageService).lang()).toBe('en');
   });
 
   it('should not register the player nor navigate when the name is invalid', () => {

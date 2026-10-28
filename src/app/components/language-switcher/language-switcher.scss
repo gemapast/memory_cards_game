@@ -1,0 +1,22 @@
+:host {
+  display: block;
+}
+
+.language-switcher {
+  border-radius: 62.438rem;
+  background-color: var(--color-surface-elevated);
+  padding: 0.25rem;
+
+  &__button {
+    border-radius: 62.438rem;
+    text-transform: uppercase;
+    font-size: var(--font-xs);
+    font-weight: var(--font-semibold);
+    color: var(--color-ink-subtle);
+
+    &--active {
+      background-color: var(--color-accent);
+      color: var(--color-ink);
+    }
+  }
+}

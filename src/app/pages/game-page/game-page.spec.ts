@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { GamePage } from './game-page';
 import { PlayerService } from '../../core/services/player/player.service';
@@ -28,12 +28,13 @@ describe('GamePage', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should display the difficulty options', () => {
+  it("should display the registered player's name and the difficulty options", () => {
     TestBed.inject(PlayerService).register('Ana');
     const fixture = TestBed.createComponent(GamePage);
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.textContent).toContain('Ana');
     expect(compiled.querySelectorAll('app-difficulty-selector button').length).toBe(4);
   });
 
@@ -76,10 +77,32 @@ describe('GamePage', () => {
 
     const target = gameService.targetValue();
     const cell = gameService.board().find((c) => c.value === target)!;
-    gameService.selectCell(cell.position);
+    const cards = (fixture.nativeElement as HTMLElement).querySelectorAll<HTMLButtonElement>(
+      'button.game-card',
+    );
+    cards[cell.position].click();
     fixture.detectChanges();
 
     expect(gameService.score()).toBe(30);
+  });
+
+  it('clears the player and navigates home when exiting from the top bar', () => {
+    const playerService = TestBed.inject(PlayerService);
+    playerService.register('Ana');
+    const fixture = TestBed.createComponent(GamePage);
+    fixture.detectChanges();
+
+    const router = TestBed.inject(Router);
+    const navigateSpy = vi.spyOn(router, 'navigateByUrl');
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    compiled.querySelector<HTMLButtonElement>('.top-bar__player')!.click();
+    fixture.detectChanges();
+    compiled.querySelector<HTMLButtonElement>('.top-bar__menu-button')!.click();
+    fixture.detectChanges();
+
+    expect(playerService.player()).toBeNull();
+    expect(navigateSpy).toHaveBeenCalledWith('/home');
   });
 
   it('keeps the score and hides the difficulty options when the game is over', () => {
@@ -119,7 +142,11 @@ describe('GamePage', () => {
     gameService.selectCell(wrongCell.position);
     fixture.detectChanges();
 
-    gameService.reset();
+    const actionButtons = (
+      fixture.nativeElement as HTMLElement
+    ).querySelectorAll<HTMLButtonElement>('.game-page__actions button');
+    expect(actionButtons.length).toBe(2);
+    actionButtons[1].click();
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;

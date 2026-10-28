@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { playerGuard } from './core/guards/player.guard';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: '', pathMatch: 'full', redirectTo: 'game' },
   {
     path: 'home',
     loadComponent: () => import('./pages/home-page/home-page').then((m) => m.HomePage),
