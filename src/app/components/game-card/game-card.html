@@ -1,0 +1,14 @@
+<button
+  type="button"
+  class="game-card flex aspect-square"
+  [class.game-card--hidden]="isHidden"
+  [class.game-card--visible]="isVisible"
+  [class.game-card--correct]="isCorrect"
+  [class.game-card--wrong]="isWrong"
+  [disabled]="isDisabled"
+  (click)="onClick()"
+>
+  @if (!isHidden) {
+    {{ cell.value }}
+  }
+</button>

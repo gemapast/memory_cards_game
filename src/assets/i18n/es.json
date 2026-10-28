@@ -1,0 +1,20 @@
+{
+  "GAME_TITLE": "Memory Cards",
+  "PLAYER_NAME": "Nombre del jugador",
+  "PLAYER_NAME_PLACEHOLDER": "Escribe tu nombre",
+  "PLAYER_NAME_ERROR": "Introduce un nombre válido (entre 2 y 20 caracteres).",
+  "START_GAME": "Comenzar a jugar",
+  "POINTS_SUFFIX": "pts",
+  "DIFFICULTY_LABEL": "Dificultad",
+  "DIFFICULTY_EASY": "Fácil",
+  "DIFFICULTY_NORMAL": "Normal",
+  "DIFFICULTY_HARD": "Difícil",
+  "VISIBLE_SECONDS": "Números visibles durante: {{value}}s",
+  "START_ROUND": "Comenzar",
+  "PLAY_AGAIN": "Jugar de nuevo",
+  "CHANGE_DIFFICULTY": "Cambiar dificultad",
+  "MEMORIZE_NUMBERS": "Memoriza los números",
+  "FIND_NUMBER": "Encuentra el número {{value}}",
+  "GAME_OVER": "¡Partida terminada!",
+  "EXIT_GAME": "Salir"
+}

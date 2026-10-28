@@ -1,0 +1,31 @@
+<div class="home-page">
+  <div class="home-page__header flex flex-col">
+    <h1 class="home-page__title tracking-tight">{{ 'GAME_TITLE' | translate }}</h1>
+  </div>
+
+  <form
+    class="home-page__form flex flex-col gap-4 p-6"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <div class="flex flex-col gap-2">
+      <label for="name" class="home-page__label">{{ 'PLAYER_NAME' | translate }}</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="{{ 'PLAYER_NAME_PLACEHOLDER' | translate }}"
+        autocomplete="off"
+        class="home-page__input"
+      />
+      @if (nameControl.invalid && nameControl.touched) {
+        <p class="home-page__error" role="alert">
+          {{ 'PLAYER_NAME_ERROR' | translate }}
+        </p>
+      }
+    </div>
+
+    <app-button type="submit">{{ 'START_GAME' | translate }}</app-button>
+  </form>
+</div>

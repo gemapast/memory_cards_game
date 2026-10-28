@@ -1,0 +1,6 @@
+/dist
+/node_modules
+.vscode/*
+/.angular/cache
+/coverage
+.DS_Store
