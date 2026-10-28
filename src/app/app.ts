@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { TopBar } from './components/top-bar/top-bar';
-import { PlayerService } from './core/services/player.service';
-import { GameService } from './core/services/game.service';
+import { PlayerService } from './core/services/player/player.service';
+import { GameService } from './core/services/game/game.service';
 
 @Component({
   selector: 'app-root',

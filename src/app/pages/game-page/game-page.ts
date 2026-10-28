@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { GameService } from '../../core/services/game.service';
+import { GameService } from '../../core/services/game/game.service';
 import { GameInfo } from '../../components/game-info/game-info';
 import { DifficultySelector } from '../../components/difficulty-selector/difficulty-selector';
 import { GameBoard } from '../../components/game-board/game-board';

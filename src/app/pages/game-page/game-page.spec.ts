@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { GamePage } from './game-page';
-import { PlayerService } from '../../core/services/player.service';
-import { GameService } from '../../core/services/game.service';
+import { PlayerService } from '../../core/services/player/player.service';
+import { GameService } from '../../core/services/game/game.service';
 
 describe('GamePage', () => {
   let gameService: GameService;

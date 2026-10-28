@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Router, UrlTree } from '@angular/router';
 import { playerGuard } from './player.guard';
-import { PlayerService } from '../services/player.service';
+import { PlayerService } from '../services/player/player.service';
 
 describe('playerGuard', () => {
   const fakeUrlTree = {} as UrlTree;

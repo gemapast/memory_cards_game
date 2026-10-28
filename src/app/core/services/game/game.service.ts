@@ -1,6 +1,6 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { Cell, DIFFICULTY_CONFIG, Difficulty, GameStatus } from '../interfaces/game.interface';
-import { createBoard, pickRandomValue } from '../utils/game-board.util';
+import { Cell, DIFFICULTY_CONFIG, Difficulty, GameStatus } from '../../interfaces/game.interface';
+import { createBoard, pickRandomValue } from '../../utils/game-board.util';
 
 const ROUND_COMPLETE_DELAY_MS = 700;
 
