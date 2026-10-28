@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { provideRouter, Router } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { GamePage } from './game-page';
-import { PlayerService } from '../../core/services/player.service';
-import { GameService } from '../../core/services/game.service';
+import { PlayerService } from '../../core/services/player/player.service';
+import { GameService } from '../../core/services/game/game.service';
 
 describe('GamePage', () => {
   let gameService: GameService;
@@ -28,13 +28,12 @@ describe('GamePage', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it("should display the registered player's name and the difficulty options", () => {
+  it('should display the difficulty options', () => {
     TestBed.inject(PlayerService).register('Ana');
     const fixture = TestBed.createComponent(GamePage);
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).toContain('Ana');
     expect(compiled.querySelectorAll('app-difficulty-selector button').length).toBe(4);
   });
 
@@ -81,21 +80,6 @@ describe('GamePage', () => {
     fixture.detectChanges();
 
     expect(gameService.score()).toBe(30);
-  });
-
-  it('clears the player and navigates home when exiting from the top bar', () => {
-    const playerService = TestBed.inject(PlayerService);
-    playerService.register('Ana');
-    const fixture = TestBed.createComponent(GamePage);
-    fixture.detectChanges();
-
-    const router = TestBed.inject(Router);
-    const navigateSpy = vi.spyOn(router, 'navigateByUrl');
-
-    fixture.componentInstance.onExit();
-
-    expect(playerService.player()).toBeNull();
-    expect(navigateSpy).toHaveBeenCalledWith('/home');
   });
 
   it('keeps the score and hides the difficulty options when the game is over', () => {

@@ -16,8 +16,22 @@
   &__difficulty,
   &__time {
     color: var(--color-ink);
-    font-size: var(--font-base);
+    font-size: var(--font-lg);
     font-weight: var(--font-semibold);
+  }
+
+  &__difficulty {
+    &--easy {
+      color: var(--color-level-easy-border-selected);
+    }
+
+    &--normal {
+      color: var(--color-level-normal-border-selected);
+    }
+
+    &--hard {
+      color: var(--color-level-hard-border-selected);
+    }
   }
 
   &__score {

@@ -25,6 +25,10 @@ export class TopBar {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   readonly menuOpen = signal(false);
 
+  playerInitial(): string {
+    return this.playerName.trim().charAt(0).toUpperCase() || '?';
+  }
+
   toggleMenu(): void {
     this.menuOpen.update((open) => !open);
   }

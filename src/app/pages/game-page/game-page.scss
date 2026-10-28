@@ -1,7 +1,7 @@
 :host {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  min-height: 100dvh;
 }
 
 .game-page {
@@ -35,8 +35,4 @@
     width: 100%;
     max-width: 24rem;
   }
-
-  // .btn-primary {
-  //   width: 100%;
-  // }
 }

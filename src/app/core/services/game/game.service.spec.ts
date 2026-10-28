@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GameService } from './game.service';
-import { DIFFICULTY_CONFIG } from '../interfaces/game.interface';
+import { DIFFICULTY_CONFIG } from '../../interfaces/game.interface';
 
 describe('GameService', () => {
   let service: GameService;

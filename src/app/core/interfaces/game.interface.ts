@@ -20,6 +20,12 @@ export const DIFFICULTY_LABELS: Record<Difficulty, string> = {
   hard: 'DIFFICULTY_HARD',
 };
 
+export const DIFFICULTY_ICONS: Record<Difficulty, string> = {
+  easy: 'sentiment_satisfied_alt',
+  normal: 'sentiment_neutral',
+  hard: 'sentiment_very_dissatisfied',
+};
+
 export type CellState = 'hidden' | 'visible' | 'correct' | 'wrong';
 
 export interface Cell {

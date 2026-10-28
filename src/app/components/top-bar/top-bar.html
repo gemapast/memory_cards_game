@@ -8,12 +8,20 @@
     [attr.aria-expanded]="menuOpen()"
     (click)="toggleMenu()"
   >
-    {{ playerName }}
+    <span class="top-bar__avatar">{{ playerInitial() }}</span>
+    <span class="top-bar__player-name">{{ playerName }}</span>
+    <span
+      class="material-icons-outlined top-bar__chevron"
+      [class.top-bar__chevron--open]="menuOpen()"
+      aria-hidden="true"
+      >expand_more</span
+    >
   </button>
 
   @if (menuOpen()) {
     <div class="top-bar__menu">
       <button type="button" class="top-bar__menu-button" (click)="onExit()">
+        <span class="material-icons-outlined top-bar__menu-icon" aria-hidden="true">logout</span>
         {{ 'EXIT_GAME' | translate }}
       </button>
     </div>

@@ -1,1 +1,5 @@
+@if (playerService.player()) {
+  <app-top-bar [playerName]="playerService.player()?.name ?? ''" (exit)="onExit()" />
+}
+
 <router-outlet />

@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Player } from '../interfaces/player.interface';
+import { Player } from '../../interfaces/player.interface';
 
 const STORAGE_KEY = 'memory-cards:player';
 

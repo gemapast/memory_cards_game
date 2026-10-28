@@ -4,7 +4,7 @@
   @apply w-full rounded-xl bg-indigo-600 px-4 py-3 text-base font-semibold text-white transition-colors active:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50;
 }
 @utility btn-secondary {
-  @apply w-full rounded-xl border border-outline bg-transparent px-4 py-3 text-base font-semibold text-ink transition-colors active:bg-surface-elevated disabled:cursor-not-allowed disabled:opacity-50;
+  @apply w-full rounded-xl bg-violet-500 border border-outline px-4 py-3 text-base font-semibold text-ink transition-colors active:bg-surface-elevated disabled:cursor-not-allowed disabled:opacity-50;
 }
 @theme static {
   --color-surface: var(--color-slate-900);
@@ -16,6 +16,7 @@
   --color-accent: var(--color-indigo-600);
   --color-accent-strong: var(--color-indigo-700);
   --color-accent-ring: var(--color-indigo-500);
+  --color-accent-subtle: var(--color-indigo-400);
 
   --color-ink: var(--color-slate-100);
   --color-ink-subtle: var(--color-slate-300);
@@ -23,4 +24,25 @@
 
   --color-danger: var(--color-red-400);
   --color-success: var(--color-emerald-500);
+
+  --color-level-easy-border: #04785780;
+  --color-level-easy-bg: #022c2266;
+  --color-level-easy-text: #d1fae5;
+  --color-level-easy-border-selected: #34d399;
+  --color-level-easy-bg-selected: #10b98133;
+  --color-level-easy-ring: #34d39999;
+
+  --color-level-normal-border: #b4530980;
+  --color-level-normal-bg: #451a0366;
+  --color-level-normal-text: #fef3c7;
+  --color-level-normal-border-selected: #fbbf24;
+  --color-level-normal-bg-selected: #f59e0b33;
+  --color-level-normal-ring: #fbbf2499;
+
+  --color-level-hard-border: #be123c80;
+  --color-level-hard-bg: #4c051966;
+  --color-level-hard-text: #ffe4e6;
+  --color-level-hard-border-selected: #fb7185;
+  --color-level-hard-bg-selected: #f43f5e33;
+  --color-level-hard-ring: #fb718599;
 }

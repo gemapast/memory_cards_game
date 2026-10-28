@@ -1,5 +1,3 @@
-<app-top-bar [playerName]="playerService.player()?.name ?? ''" (exit)="onExit()" />
-
 <div class="game-page">
   @if (gameService.isPlaying() || gameService.isGameOver()) {
     <app-game-info
@@ -41,14 +39,18 @@
     />
   }
 
-  @if (gameService.isGameOver()) {
-    <div class="game-page__actions flex gap-2">
-      <button type="button" class="btn-primary flex-1" (click)="gameService.start()">
+  @if (gameService.isPlaying() || gameService.isGameOver()) {
+    <div class="game-page__actions flex gap-2" [class.invisible]="!gameService.isGameOver()">
+      <app-button [disabled]="!gameService.isGameOver()" (buttonClick)="gameService.start()">
         {{ 'PLAY_AGAIN' | translate }}
-      </button>
-      <button type="button" class="btn-secondary flex-1" (click)="gameService.reset()">
+      </app-button>
+      <app-button
+        variant="secondary"
+        [disabled]="!gameService.isGameOver()"
+        (buttonClick)="gameService.reset()"
+      >
         {{ 'CHANGE_DIFFICULTY' | translate }}
-      </button>
+      </app-button>
     </div>
   }
 </div>
