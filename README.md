@@ -20,14 +20,16 @@ A "Memory Cards" memory game PWA built with **Angular 21** (standalone, signals,
 - **Installable PWA with real offline support**: it can be added to the Android/iOS home screen as a native-like app, with its own icon and fullscreen display (`display: standalone`), and the `@angular/service-worker` service worker precaches assets and i18n files so it works without a connection.
 - **Internationalization** (es/en) with `@ngx-translate`.
 - **Unit tests** for services, guards, pages and components with Vitest.
+- **E2E tests** with Playwright covering the login flow, route protection and a full game round (correct guess, wrong guess/game over, and replay).
 - **Code quality**: ESLint + Prettier + Husky/lint-staged (pre-commit runs lint + test).
-- **CI/CD**: GitHub Actions runs lint + test + build on every push/PR; pushing a `vX.Y.Z` tag on `master` automatically deploys to GitHub Pages.
+- **CI/CD**: GitHub Actions runs lint + unit tests + e2e tests + build on every push/PR; pushing a `vX.Y.Z` tag on `master` automatically deploys to GitHub Pages.
 
 ## Tech stack
 
 - [Angular 21](https://angular.dev/) (standalone components, `signal`/`computed`, `ChangeDetectionStrategy.OnPush`, the new `@if`/`@for` control flow)
 - [Tailwind CSS v4](https://tailwindcss.com/) (via PostCSS) with a mobile-first design
 - [Vitest](https://vitest.dev/) as the test runner (integrated through the `@angular/build:unit-test` builder)
+- [Playwright](https://playwright.dev/) for end-to-end tests
 - [@ngx-translate](https://github.com/ngx-translate/core) for i18n
 - [@angular/service-worker](https://angular.dev/ecosystem/service-workers) for the offline/PWA layer
 - ESLint (`angular-eslint`) + Prettier + Husky + lint-staged
@@ -54,8 +56,8 @@ npm install
 | `npm test`                  | Runs the Vitest test suite (watch mode).                                                                               |
 | `npm test -- --watch=false` | Runs the full suite once (used in CI).                                                                                 |
 | `npm run test:coverage`     | Runs the tests and generates a coverage report.                                                                        |
-| `npm run lint`              | Lints (ESLint) `.ts`/`.html` files.                                                                                    |
-| `npm run serve:dist`        | Serves the production build statically (`http-server`), needed to test offline/PWA behavior.                           |
+| `npm run lint`              | Lints (ESLint) `.ts`/`.html` files.                                                                                    |     | `npm run e2e`        | Runs the Playwright e2e suite (starts `ng serve` automatically).                             |
+| `npm run e2e:ui`            | Runs the Playwright e2e suite in UI mode, useful to debug tests interactively.                                         |     | `npm run serve:dist` | Serves the production build statically (`http-server`), needed to test offline/PWA behavior. |
 
 ## How to test offline / PWA mode locally
 
@@ -101,9 +103,20 @@ npm test -- --watch=false
 
 The tests cover: `PlayerService` (persistence in `localStorage`), `playerGuard`, `GameService` (board generation, timer, scoring, game over) using fake timers, pure board utilities, and the pages/components (rendering, form validation, user events).
 
+## E2E tests
+
+```bash
+npm run e2e
+```
+
+Playwright automatically starts `ng serve` and runs the suite in `e2e/` against a real browser (Chromium):
+
+- `e2e/home.spec.ts`: route protection (`game` redirects to `home` without a registered player, unknown routes redirect to `home`), name validation, and successful registration.
+- `e2e/game.spec.ts`: a full round with a correct guess (score increases, a new round starts), and a wrong guess (game over screen, then "play again" / "change difficulty").
+
 ## CI/CD
 
-The GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every `push`/`pull request` to `master`/`develop`: `lint` → `test` → `build`. Pushing a `vX.Y.Z` tag whose commit belongs to `master` automatically deploys to GitHub Pages.
+The GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every `push`/`pull request` to `master`/`develop`: `lint` → `test` → `e2e` → `build`. Pushing a `vX.Y.Z` tag whose commit belongs to `master` automatically deploys to GitHub Pages.
 
 ## Generated with
 

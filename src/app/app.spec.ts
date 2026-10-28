@@ -45,7 +45,11 @@ describe('App', () => {
     const router = TestBed.inject(Router);
     const navigateSpy = vi.spyOn(router, 'navigateByUrl');
 
-    fixture.componentInstance.onExit();
+    const compiled = fixture.nativeElement as HTMLElement;
+    compiled.querySelector<HTMLButtonElement>('.top-bar__player')!.click();
+    fixture.detectChanges();
+    compiled.querySelector<HTMLButtonElement>('.top-bar__menu-button')!.click();
+    fixture.detectChanges();
 
     expect(playerService.player()).toBeNull();
     expect(navigateSpy).toHaveBeenCalledWith('/home');
