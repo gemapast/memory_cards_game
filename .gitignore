@@ -3,5 +3,4 @@
 .vscode/*
 /.angular/cache
 /coverage
-package-lock.json
 .DS_Store
