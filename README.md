@@ -16,7 +16,8 @@ A "Memory Cards" memory game PWA built with **Angular 21** (standalone, signals,
   | Normal     | 5 s          | 20             |
   | Hard       | 2 s          | 30             |
 
-- **9-cell board** with the numbers 1 to 9 in random positions; once hidden, the player must find the position of the requested number. Correct guess = green cell, points added and a new round. Wrong guess = red cell revealing the number and game over.
+- **9-cell board** with the numbers 1 to 9 in random positions; once hidden, the player must find the position of the requested number. Correct guess = green cell, points added and a new round. Wrong guess = red cell revealing the number and game over, with a short vibration on devices that support the [Vibration API](https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API) (e.g. Android Chrome; not supported on iOS Safari).
+- **Game info bar**: shows the current difficulty, the countdown of remaining seconds and the score while playing.
 - **Installable PWA with real offline support**: it can be added to the Android/iOS home screen as a native-like app, with its own icon and fullscreen display (`display: standalone`), and the `@angular/service-worker` service worker precaches assets and i18n files so it works without a connection.
 - **Internationalization** (es/en) with `@ngx-translate`.
 - **Unit tests** for services, guards, pages and components with Vitest.

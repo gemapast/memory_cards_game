@@ -1,23 +1,10 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
-import { TopBar } from './components/top-bar/top-bar';
-import { PlayerService } from './core/services/player/player.service';
-import { GameService } from './core/services/game/game.service';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TopBar],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
-  protected readonly playerService = inject(PlayerService);
-  private readonly gameService = inject(GameService);
-  private readonly router = inject(Router);
-
-  onExit(): void {
-    this.gameService.reset();
-    this.playerService.clear();
-    this.router.navigateByUrl('/home');
-  }
-}
+export class App {}
