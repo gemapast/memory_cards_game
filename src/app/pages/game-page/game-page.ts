@@ -7,10 +7,11 @@ import { GameInfo } from '../../components/game-info/game-info';
 import { DifficultySelector } from '../../components/difficulty-selector/difficulty-selector';
 import { GameBoard } from '../../components/game-board/game-board';
 import { TopBar } from '../../components/top-bar/top-bar';
+import { Button } from '../../components/button/button';
 
 @Component({
   selector: 'app-game-page',
-  imports: [TranslatePipe, GameInfo, DifficultySelector, GameBoard, TopBar],
+  imports: [TranslatePipe, GameInfo, DifficultySelector, GameBoard, TopBar, Button],
   templateUrl: './game-page.html',
   styleUrl: './game-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

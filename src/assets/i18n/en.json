@@ -9,7 +9,7 @@
   "DIFFICULTY_EASY": "Easy",
   "DIFFICULTY_NORMAL": "Normal",
   "DIFFICULTY_HARD": "Hard",
-  "VISIBLE_SECONDS": "Numbers visible {{value}}s",
+  "VISIBLE_SECONDS": "Numbers visible during: {{value}}s",
   "START_ROUND": "Start",
   "PLAY_AGAIN": "Play again",
   "CHANGE_DIFFICULTY": "Change difficulty",
