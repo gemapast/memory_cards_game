@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       TranslateModule.forRoot({
         fallbackLang: 'es',
-        loader: provideTranslateHttpLoader(),
+        loader: provideTranslateHttpLoader({ prefix: 'assets/i18n/' }),
       }),
     ),
     provideServiceWorker('ngsw-worker.js', {
