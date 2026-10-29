@@ -14,7 +14,7 @@ import { LanguageSwitcher } from '../../components/language-switcher/language-sw
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePage {
-  private readonly playerService = inject(PlayerService);
+  protected readonly playerService = inject(PlayerService);
   private readonly router = inject(Router);
 
   readonly form = new FormGroup({
@@ -36,5 +36,14 @@ export class HomePage {
 
     this.playerService.register(this.form.getRawValue().name);
     this.router.navigateByUrl('/game');
+  }
+
+  loginAs(name: string): void {
+    this.playerService.register(name);
+    this.router.navigateByUrl('/game');
+  }
+
+  goToRanking(): void {
+    this.router.navigateByUrl('/ranking');
   }
 }

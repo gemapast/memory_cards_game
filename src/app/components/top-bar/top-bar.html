@@ -20,6 +20,16 @@
 
   @if (menuOpen()) {
     <div class="top-bar__menu">
+      <button
+        type="button"
+        class="top-bar__menu-button top-bar__menu-button--neutral"
+        (click)="goToRanking()"
+      >
+        <span class="material-icons-outlined top-bar__menu-icon" aria-hidden="true"
+          >leaderboard</span
+        >
+        {{ 'RANKING_TITLE' | translate }}
+      </button>
       <button type="button" class="top-bar__menu-button" (click)="onExit()">
         <span class="material-icons-outlined top-bar__menu-icon" aria-hidden="true">logout</span>
         {{ 'EXIT_GAME' | translate }}

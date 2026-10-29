@@ -1,11 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { GameService } from './game.service';
 import { DIFFICULTY_CONFIG } from '../../interfaces/game.interface';
+import { PlayerService } from '../player/player.service';
 
 describe('GameService', () => {
   let service: GameService;
 
   beforeEach(() => {
+    localStorage.clear();
     vi.useFakeTimers();
     TestBed.configureTestingModule({});
     service = TestBed.inject(GameService);
@@ -129,5 +131,27 @@ describe('GameService', () => {
 
     expect(service.difficulty()).toBeNull();
     expect(service.canStart()).toBe(false);
+  });
+
+  it('records the final score for the active player when the game ends', () => {
+    const playerService = TestBed.inject(PlayerService);
+    playerService.register('Ana');
+
+    service.setDifficulty('easy');
+    service.start();
+    vi.advanceTimersByTime(DIFFICULTY_CONFIG.easy.time * 1000);
+    const target = service.targetValue();
+    const correctCell = service.board().find((cell) => cell.value === target)!;
+    service.selectCell(correctCell.position);
+    vi.runOnlyPendingTimers();
+    vi.advanceTimersByTime(DIFFICULTY_CONFIG.easy.time * 1000);
+
+    const nextTarget = service.targetValue();
+    const wrongCell = service.board().find((cell) => cell.value !== nextTarget)!;
+    service.selectCell(wrongCell.position);
+
+    expect(playerService.player()).toMatchObject({
+      bestScore: DIFFICULTY_CONFIG.easy.points,
+    });
   });
 });

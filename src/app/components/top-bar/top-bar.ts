@@ -9,6 +9,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -23,6 +24,7 @@ export class TopBar {
   @Output() readonly exit = new EventEmitter<void>();
 
   private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private readonly router = inject(Router);
   readonly menuOpen = signal(false);
 
   playerInitial(): string {
@@ -31,6 +33,11 @@ export class TopBar {
 
   toggleMenu(): void {
     this.menuOpen.update((open) => !open);
+  }
+
+  goToRanking(): void {
+    this.menuOpen.set(false);
+    this.router.navigateByUrl('/ranking');
   }
 
   onExit(): void {

@@ -99,6 +99,10 @@
     color: var(--color-danger);
     transition: background-color 0.15s ease;
 
+    &--neutral {
+      color: var(--color-ink);
+    }
+
     &:hover {
       background-color: var(--color-surface-inset);
     }
