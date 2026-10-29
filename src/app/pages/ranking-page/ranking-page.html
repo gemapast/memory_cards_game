@@ -1,0 +1,26 @@
+<div class="ranking-page">
+  <h1 class="ranking-page__title">{{ 'RANKING_TITLE' | translate }}</h1>
+
+  @if (playerService.ranking().length === 0) {
+    <p class="ranking-page__empty">{{ 'RANKING_EMPTY' | translate }}</p>
+  } @else {
+    <ol class="ranking-page__list">
+      @for (entry of playerService.ranking(); track entry.id; let position = $index) {
+        <li
+          class="ranking-page__item"
+          [class.ranking-page__item--current]="entry.id === playerService.player()?.id"
+        >
+          <span class="ranking-page__position">{{ position + 1 }}</span>
+          <span class="ranking-page__name">{{ entry.name }}</span>
+          <span class="ranking-page__score"
+            >{{ entry.bestScore }} {{ 'POINTS_SUFFIX' | translate }}</span
+          >
+        </li>
+      }
+    </ol>
+  }
+
+  <div class="ranking-page__actions">
+    <app-button (buttonClick)="goBack()">{{ 'BACK' | translate }}</app-button>
+  </div>
+</div>

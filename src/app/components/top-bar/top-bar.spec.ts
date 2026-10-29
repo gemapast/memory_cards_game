@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { TopBar } from './top-bar';
 
@@ -6,6 +7,7 @@ describe('TopBar', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TopBar, TranslateModule.forRoot()],
+      providers: [provideRouter([])],
     }).compileComponents();
   });
 
@@ -31,14 +33,33 @@ describe('TopBar', () => {
     toggleButton.click();
     fixture.detectChanges();
 
-    const exitButton = (fixture.nativeElement as HTMLElement).querySelector(
+    const menuButtons = (fixture.nativeElement as HTMLElement).querySelectorAll<HTMLButtonElement>(
       'button.top-bar__menu-button',
-    ) as HTMLButtonElement;
-    expect(exitButton).toBeTruthy();
+    );
+    expect(menuButtons).toHaveLength(2);
+    const exitButton = menuButtons[1];
     exitButton.click();
     fixture.detectChanges();
 
     expect(exitSpy).toHaveBeenCalledTimes(1);
+    expect(fixture.componentInstance.menuOpen()).toBe(false);
+  });
+
+  it('navigates to the ranking page and closes the menu', () => {
+    const fixture = TestBed.createComponent(TopBar);
+    fixture.detectChanges();
+    fixture.componentInstance.toggleMenu();
+    fixture.detectChanges();
+    const router = TestBed.inject(Router);
+    const navigateSpy = vi.spyOn(router, 'navigateByUrl');
+
+    const rankingButton = (
+      fixture.nativeElement as HTMLElement
+    ).querySelectorAll<HTMLButtonElement>('button.top-bar__menu-button')[0];
+    rankingButton.click();
+    fixture.detectChanges();
+
+    expect(navigateSpy).toHaveBeenCalledWith('/ranking');
     expect(fixture.componentInstance.menuOpen()).toBe(false);
   });
 

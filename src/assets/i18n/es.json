@@ -13,8 +13,13 @@
   "START_ROUND": "Comenzar",
   "PLAY_AGAIN": "Jugar de nuevo",
   "CHANGE_DIFFICULTY": "Cambiar dificultad",
+  "STOP_GAME": "Terminar partida",
   "MEMORIZE_NUMBERS": "Memoriza los números",
   "FIND_NUMBER": "Encuentra el número {{value}}",
   "GAME_OVER": "¡Partida terminada!",
-  "EXIT_GAME": "Salir"
+  "EXIT_GAME": "Salir",
+  "CONTINUE_AS": "O continúa como:",
+  "RANKING_TITLE": "Ranking",
+  "RANKING_EMPTY": "Aún no hay partidas registradas en este dispositivo.",
+  "BACK": "Volver"
 }
