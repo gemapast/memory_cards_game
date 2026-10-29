@@ -7,7 +7,8 @@ A "Memory Cards" memory game PWA built with **Angular 21** (standalone, signals,
 
 ## Features
 
-- **Simple login**: the player enters their name (validated) to access the game; the `game` route is protected by a guard that requires a registered player, and any unknown route redirects to `home`.
+- **Local multi-player login**: the player enters their name (validated) to access the game; existing names are reused (case-insensitive) instead of creating duplicates, so each player keeps their history. The home page also shows a "Continue as..." list with the most recently played names for a one-tap login. The `game` route is protected by a guard that requires a registered player, and any unknown route redirects to `home`.
+- **Ranking**: a `/ranking` page (no login required to view it) lists every local player ordered by their best score, highlighting the currently active player. Accessible from the home page and from the in-game menu (`top-bar`).
 - **3 difficulty levels**, each with its own memorization time and points per correct answer:
 
   | Difficulty | Visible time | Points per hit |
@@ -21,7 +22,7 @@ A "Memory Cards" memory game PWA built with **Angular 21** (standalone, signals,
 - **Installable PWA with real offline support**: it can be added to the Android/iOS home screen as a native-like app, with its own icon and fullscreen display (`display: standalone`), and the `@angular/service-worker` service worker precaches assets and i18n files so it works without a connection.
 - **Internationalization** (es/en) with `@ngx-translate`, with a language switcher on the home page (bottom-right corner) that persists the chosen language in `localStorage`.
 - **Unit tests** for services, guards, pages and components with Vitest.
-- **E2E tests** with Playwright covering the login flow, route protection and a full game round (correct guess, wrong guess/game over, and replay).
+- **E2E tests** with Playwright covering the login flow (including quick login and the ranking page), route protection and a full game round (correct guess, wrong guess/game over, early stop, and replay).
 - **Code quality**: ESLint + Prettier + Husky/lint-staged (pre-commit runs lint + test).
 - **CI/CD**: GitHub Actions runs lint + unit tests + e2e tests + build on every push/PR; pushing a `vX.Y.Z` tag on `master` automatically deploys to GitHub Pages.
 
@@ -87,14 +88,15 @@ src/app/
 ├── core/
 │   ├── guards/        # playerGuard: protects the "game" route
 │   ├── interfaces/     # models (Player, Cell, Difficulty, GameStatus...)
-│   ├── services/       # PlayerService and GameService (signal-based state)
+│   ├── services/       # PlayerService (players + ranking) and GameService (signal-based state)
 │   └── utils/          # pure, testable logic (shuffle, createBoard...)
 ├── components/          # reusable components (game-board, game-card,
 │                        #   difficulty-selector, score-badge, top-bar,
 │                        #   language-switcher, button)
 └── pages/
-    ├── home-page/       # player login / registration
-    └── game-page/       # board and game logic
+    ├── home-page/       # player login / registration + quick "continue as" login
+    ├── game-page/       # board and game logic
+    └── ranking-page/    # local players ranking, sorted by best score
 ```
 
 ## Tests
@@ -113,8 +115,8 @@ npm run e2e
 
 Playwright automatically starts `ng serve` and runs the suite in `e2e/` against a real browser (Chromium):
 
-- `e2e/home.spec.ts`: route protection (`game` redirects to `home` without a registered player, unknown routes redirect to `home`), name validation, and successful registration.
-- `e2e/game.spec.ts`: a full round with a correct guess (score increases, a new round starts), and a wrong guess (game over screen, then "play again" / "change difficulty").
+- `e2e/home.spec.ts`: route protection (`game` redirects to `home` without a registered player, unknown routes redirect to `home`), name validation, successful registration, quick login from the "Continue as..." list, and navigating to/from the ranking page without an active player.
+- `e2e/game.spec.ts`: a full round with a correct guess (score increases, a new round starts), a wrong guess (game over screen, then "play again" / "change difficulty"), exiting the game, ending the game early with the "End game" button, and reaching the ranking from the top bar menu to confirm the score was recorded.
 
 ## CI/CD
 

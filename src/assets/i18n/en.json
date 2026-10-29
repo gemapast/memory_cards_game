@@ -13,8 +13,13 @@
   "START_ROUND": "Start",
   "PLAY_AGAIN": "Play again",
   "CHANGE_DIFFICULTY": "Change difficulty",
+  "STOP_GAME": "Stop game",
   "MEMORIZE_NUMBERS": "Memorize the numbers",
   "FIND_NUMBER": "Find number {{value}}",
   "GAME_OVER": "Game over!",
-  "EXIT_GAME": "Exit"
+  "EXIT_GAME": "Exit",
+  "CONTINUE_AS": "Or continue as:",
+  "RANKING_TITLE": "Ranking",
+  "RANKING_EMPTY": "No games recorded on this device yet.",
+  "BACK": "Back"
 }

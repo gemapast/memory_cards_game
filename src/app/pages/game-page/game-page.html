@@ -41,18 +41,41 @@
     />
   }
 
-  @if (gameService.isPlaying() || gameService.isGameOver()) {
-    <div class="game-page__actions flex gap-2" [class.invisible]="!gameService.isGameOver()">
-      <app-button [disabled]="!gameService.isGameOver()" (buttonClick)="gameService.start()">
+  <!-- @if (gameService.isPlaying() || gameService.isGameOver()) {
+    <div class="game-page__actions flex gap-2">
+      <app-button
+        [class.invisible]="!gameService.isGameOver()"
+        [disabled]="!gameService.isGameOver()"
+        (buttonClick)="gameService.start()"
+      >
         {{ 'PLAY_AGAIN' | translate }}
       </app-button>
-      <app-button
-        variant="secondary"
-        [disabled]="!gameService.isGameOver()"
-        (buttonClick)="gameService.reset()"
-      >
-        {{ 'CHANGE_DIFFICULTY' | translate }}
-      </app-button>
+      @if (gameService.isGameOver()) {
+        <app-button variant="secondary" (buttonClick)="gameService.reset()">
+          {{ 'CHANGE_DIFFICULTY' | translate }}
+        </app-button>
+      } @else {
+        <app-button variant="secondary" (buttonClick)="gameService.stop()">
+          {{ 'STOP_GAME' | translate }}
+        </app-button>
+      }
+    </div>
+  } -->
+
+  @if (gameService.isPlaying() || gameService.isGameOver()) {
+    <div class="game-page__actions flex gap-2">
+      @if (gameService.isGameOver()) {
+        <app-button (buttonClick)="gameService.start()">
+          {{ 'PLAY_AGAIN' | translate }}
+        </app-button>
+        <app-button variant="secondary" (buttonClick)="gameService.reset()">
+          {{ 'CHANGE_DIFFICULTY' | translate }}
+        </app-button>
+      } @else {
+        <app-button variant="secondary" (buttonClick)="gameService.stop()">
+          {{ 'STOP_GAME' | translate }}
+        </app-button>
+      }
     </div>
   }
 </div>

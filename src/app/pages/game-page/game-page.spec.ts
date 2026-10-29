@@ -98,11 +98,30 @@ describe('GamePage', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     compiled.querySelector<HTMLButtonElement>('.top-bar__player')!.click();
     fixture.detectChanges();
-    compiled.querySelector<HTMLButtonElement>('.top-bar__menu-button')!.click();
+    const menuButtons = compiled.querySelectorAll<HTMLButtonElement>('.top-bar__menu-button');
+    menuButtons[menuButtons.length - 1].click();
     fixture.detectChanges();
 
     expect(playerService.player()).toBeNull();
     expect(navigateSpy).toHaveBeenCalledWith('/home');
+  });
+
+  it('stops the game when clicking the stop button while playing', () => {
+    TestBed.inject(PlayerService).register('Ana');
+    const fixture = TestBed.createComponent(GamePage);
+    fixture.detectChanges();
+
+    gameService.setDifficulty('hard');
+    gameService.start();
+    fixture.detectChanges();
+
+    const stopButton = (fixture.nativeElement as HTMLElement).querySelectorAll<HTMLButtonElement>(
+      '.game-page__actions button',
+    )[0];
+    stopButton.click();
+    fixture.detectChanges();
+
+    expect(gameService.status()).toBe('gameOver');
   });
 
   it('keeps the score and hides the difficulty options when the game is over', () => {

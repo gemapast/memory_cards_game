@@ -78,4 +78,53 @@ test.describe('Game flow', () => {
     await page.goto('/game');
     await expect(page).toHaveURL(/\/home$/);
   });
+
+  test('ends the game with the "Terminar partida" button and keeps the score reached so far', async ({
+    page,
+  }) => {
+    await page.getByRole('button', { name: 'Difícil' }).click();
+    await page.getByRole('button', { name: 'Comenzar', exact: true }).click();
+
+    await expect(page.getByText('Memoriza los números')).toBeVisible();
+
+    const cards = page.locator('.game-board button');
+    const { values, target } = await readRound(page, cards);
+    const targetIndex = values.indexOf(target);
+    await cards.nth(targetIndex).click();
+
+    await expect(page.locator('.game-info__score')).toHaveText('30 pts');
+
+    await page.getByRole('button', { name: 'Terminar partida' }).click();
+
+    await expect(page.getByText('¡Partida terminada!')).toBeVisible();
+    await expect(page.locator('.game-info__score')).toHaveText('30 pts');
+    await expect(page.getByRole('button', { name: 'Terminar partida' })).toHaveCount(0);
+  });
+
+  test('records the score in the ranking page reached via the top bar menu', async ({ page }) => {
+    await page.getByRole('button', { name: 'Difícil' }).click();
+    await page.getByRole('button', { name: 'Comenzar', exact: true }).click();
+
+    await expect(page.getByText('Memoriza los números')).toBeVisible();
+
+    const cards = page.locator('.game-board button');
+    const { values, target } = await readRound(page, cards);
+    const targetIndex = values.indexOf(target);
+    await cards.nth(targetIndex).click();
+
+    await expect(page.locator('.game-info__score')).toHaveText('30 pts');
+
+    await page.getByRole('button', { name: 'Terminar partida' }).click();
+    await expect(page.getByText('¡Partida terminada!')).toBeVisible();
+
+    await page.getByRole('button', { name: 'Ana' }).click();
+    await page.getByRole('button', { name: 'Ranking' }).click();
+
+    await expect(page).toHaveURL(/\/ranking$/);
+    const rankingRow = page.getByText('Ana').locator('..');
+    await expect(rankingRow).toContainText('30 pts');
+
+    await page.getByRole('button', { name: 'Volver' }).click();
+    await expect(page).toHaveURL(/\/game$/);
+  });
 });

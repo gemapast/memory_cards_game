@@ -67,7 +67,28 @@ describe('HomePage', () => {
     fixture.componentInstance.nameControl.setValue('Ana');
     fixture.componentInstance.onSubmit();
 
-    expect(playerService.player()).toEqual({ name: 'Ana' });
+    expect(playerService.player()).toMatchObject({ name: 'Ana' });
+    expect(navigateSpy).toHaveBeenCalledWith('/game');
+  });
+
+  it('shows a quick-login button for a previously registered player and reuses their record', () => {
+    const playerService = TestBed.inject(PlayerService);
+    playerService.register('Ada');
+    const firstId = playerService.player()!.id;
+    playerService.clear();
+
+    const fixture = TestBed.createComponent(HomePage);
+    fixture.detectChanges();
+
+    const router = TestBed.inject(Router);
+    const navigateSpy = vi.spyOn(router, 'navigateByUrl');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const recentButton = compiled.querySelector<HTMLButtonElement>('.home-page__recent-button')!;
+    expect(recentButton.textContent?.trim()).toBe('Ada');
+
+    recentButton.click();
+
+    expect(playerService.player()?.id).toBe(firstId);
     expect(navigateSpy).toHaveBeenCalledWith('/game');
   });
 });

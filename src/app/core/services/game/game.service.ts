@@ -1,11 +1,13 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { Cell, DIFFICULTY_CONFIG, Difficulty, GameStatus } from '../../interfaces/game.interface';
 import { createBoard, pickRandomValue } from '../../utils/game-board.util';
+import { PlayerService } from '../player/player.service';
 
 const ROUND_COMPLETE_DELAY_MS = 700;
 
 @Injectable({ providedIn: 'root' })
 export class GameService {
+  private readonly playerService = inject(PlayerService);
   private readonly statusSignal = signal<GameStatus>('idle');
   private readonly boardSignal = signal<Cell[]>([]);
   private readonly difficultySignal = signal<Difficulty | null>(null);
@@ -70,6 +72,7 @@ export class GameService {
     if (!isCorrect) {
       this.cancelTimers();
       this.statusSignal.set('gameOver');
+      this.playerService.recordResult(this.scoreSignal());
       this.vibrateOnFail();
       return;
     }
@@ -87,6 +90,12 @@ export class GameService {
     this.targetValueSignal.set(null);
     this.scoreSignal.set(0);
     this.timeRemainingSignal.set(0);
+  }
+
+  stop(): void {
+    this.cancelTimers();
+    this.statusSignal.set('gameOver');
+    this.playerService.recordResult(this.scoreSignal());
   }
 
   cancelTimers(): void {

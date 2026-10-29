@@ -24,6 +24,30 @@
     <app-button type="submit">{{ 'START_GAME' | translate }}</app-button>
   </form>
 
+  @if (playerService.recentPlayers().length > 0) {
+    <div class="home-page__recent flex flex-col gap-2">
+      <span class="home-page__recent-label">{{ 'CONTINUE_AS' | translate }}</span>
+      <div class="flex flex-wrap justify-center gap-2">
+        @for (recentPlayer of playerService.recentPlayers(); track recentPlayer.id) {
+          <button
+            type="button"
+            class="home-page__recent-button"
+            (click)="loginAs(recentPlayer.name)"
+          >
+            {{ recentPlayer.name }}
+          </button>
+        }
+      </div>
+    </div>
+  }
+
+  <button type="button" (click)="goToRanking()" class="home-page__ranking-link">
+    <span class="material-icons-outlined home-page__ranking-icon" aria-hidden="true"
+      >leaderboard</span
+    >
+    {{ 'RANKING_TITLE' | translate }}
+  </button>
+
   <div class="home-page__language fixed right-4 bottom-4 z-50">
     <app-language-switcher />
   </div>
